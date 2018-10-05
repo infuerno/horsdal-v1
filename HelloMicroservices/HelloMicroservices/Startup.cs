@@ -11,6 +11,7 @@ using Nancy.Owin;
 
 namespace HelloMicroservices
 {
+    
     public class Startup
     {
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -22,7 +23,7 @@ namespace HelloMicroservices
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole();
+            //loggerFactory.AddConsole();
 
             if (env.IsDevelopment())
             {
@@ -37,11 +38,13 @@ namespace HelloMicroservices
                 // add middleware to log the request
                 buildFunc(next => environment =>
                 {
-                    System.Console.WriteLine("got request");
+                    System.Console.WriteLine("Got request");
                     return next(environment);
                 });
                 buildFunc.UseNancy();
             });
+                        
+            //app.Run(async (context) => { await context.Response.WriteAsync("Hello World!"); });
         }
     }
 }
